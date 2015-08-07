@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.0.0'
+        // Robolectric does not support gradle plugin 1.0.0
+        // classpath 'org.robolectric:robolectric-gradle-plugin:0.14.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+        classpath 'com.nabilhachicha:android-native-dependencies:0.1.1'
+
+        classpath 'com.github.jcandksolutions.gradle:android-unit-test:2.1.1'
+
+    }
+}
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 22
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:recyclerview-v7:22.0.0'
+    compile 'com.android.support:support-annotations:22.0.0'
+}
+
+apply from: 'maven-push.gradle'
